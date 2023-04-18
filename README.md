@@ -13,7 +13,7 @@ The dashboard is made up of various charts and visuals created mostly with the [
 - Git
 - Clone the repository for the API available at this URL: https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard
 
-**Note**: This project uses TypeScript (v4.9.5). TypeScript is included as a dependency in the package.json file, and will be installed automatically when running npm install.
+**Note**: This project uses TypeScript (v4.9.5). TypeScript is included as a dependency in the package.json file, and will be installed automatically when running npm install. **As TypeScript provides type-checking there was no need to use PropTypes in this project**.
 
 ## Installation
 
