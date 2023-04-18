@@ -24,6 +24,11 @@ The dashboard is made up of various charts and visuals created mostly with the [
 5. Start the project with the command `npm run start`.
 6. Once you start the project with npm run start, your default browser will launch, and you can select a data source (MOCK or API) and navigate to one of the two available profiles to view the dashboard page.
 
+<p float="left">
+  <img src="./screenshots/DataSource.png" width="100" alt="Choose data source"/>
+  <img src="./screenshots/NavigateToProfile.png" width="100" alt="Navigate to profile"/> 
+</p>
+
 ### API Usage
 
 To use the API, it is necessary to have cloned the API repository mentioned in the Prerequisites and to have started it locally (refer to the [API README](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard/blob/master/README.md)). 
