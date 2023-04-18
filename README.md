@@ -1,10 +1,10 @@
 # SportSee
 
-This is project #12 of the OpenClassrooms 'Frontend Developer JS/React' path.
+## This is project #12 of the OpenClassrooms 'Frontend Developer JS/React' path.
 
-The project is developed with **React (v18.2.0)** and serves as a sports analytics dashboard.  
+The project is developed with **React (v18.2.0)** and serves as a **sports analytics dashboard**.  
 The dashboard, accessible on the /profile page, features various visuals and charts that allow users to visualize their sports data, including workout sessions completed, calories burned, and other fitness metrics. 
-These visuals and charts have been created using the **[Recharts](https://recharts.org/en-US/)** library, which provides a powerful and flexible set of tools for creating data visualizations in React.
+These visuals and charts have been created using the **[Recharts](https://recharts.org/en-US/)** library, which provides a powerful set of tools for creating data visualizations in React.
 
 ![Dashboard screenshot](./screenshots/Dashboard.png)
 
