@@ -1,0 +1,47 @@
+.ActivityBarChart {
+  background-color: #fbfbfb;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+}
+
+.ActivityBarChart .recharts-wrapper .recharts-cartesian-grid-horizontal line:last-child {
+  stroke-opacity: 0;
+}
+
+/* Chart title*/
+.ActivityBarChart text  {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.ActivityBarChart ul.recharts-default-legend li span.recharts-legend-item-text {
+  color: #74798c !important;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.ActivityBarChart ul.recharts-default-legend li:first-child {
+  margin-right: 32px !important;
+}
+
+.ActivityBarChart .custom-tooltip {
+  width: 39px;
+  height: 63px;
+  background-color: #e60000;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  margin: 0 12px;
+  padding: 0 5px;
+}
+
+.ActivityBarChart .custom-tooltip p {
+  color: white;
+  font-size: 10.5px;
+  font-weight: 500;
+  text-align: center;
+}
+

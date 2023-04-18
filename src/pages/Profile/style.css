@@ -1,0 +1,77 @@
+.ProfilePage {
+  margin-top: 93px;
+  padding: 0px 6vw 50px 14vw;
+  position: fixed;
+  overflow-y: scroll;
+  inset: 0;
+  z-index: -1;
+}
+
+.ProfilePage .dashboard {
+  display: flex;
+  justify-content: space-between;
+  gap: 2vw;
+}
+
+.ProfilePage .dashboard .charts {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 75%;
+}
+
+.ProfilePage .dashboard .charts .top-container {
+  height: 51%;
+}
+
+.ProfilePage .dashboard .charts .bottom-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2vw;
+  height: 49%;
+}
+
+.ProfilePage .dashboard .key-data-card-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25%;
+  margin: 0;
+}
+
+@media screen and (max-width: 1230px) {
+  .ProfilePage .dashboard {
+    flex-direction: column;
+  }
+
+  .ProfilePage .dashboard .charts {
+    width: 100%;
+  }
+
+  .ProfilePage .dashboard .key-data-card-list {
+    width: auto;
+    gap: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+}
+
+.ErrorMessage {
+  margin-top: 93px;
+  margin-left: 8.125vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.ErrorMessage p {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+}

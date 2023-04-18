@@ -1,0 +1,52 @@
+.DataSource {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 10px;
+ text-align: center;
+}
+
+.DataSource .data-source-buttons {
+  display: flex;
+  gap: 30px;
+}
+
+.DataSource .data-source-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  background-color: #f2f2f2;
+  border: none;
+  cursor: pointer;
+}
+
+
+.DataSource .data-source-button img {
+  width: 50%;
+}
+
+.DataSource .data-source-button.active {
+  background-color: #000000;
+  color: #fff;
+}
+
+
+.DataSource .data-source-button:not(.active) span,
+.DataSource .data-source-button:not(.active) img {
+  opacity: 0.5;
+  filter: brightness(0%);
+}
+
+.DataSource .error {
+  color: #FF0101;
+  font-weight: 600;
+  font-style: italic;
+}

@@ -1,0 +1,22 @@
+.Error-content {
+  text-align: center;
+  margin: 0 10vw;
+}
+
+.Error-content h1 {
+  font-size: 8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.Error-content p {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.Error-content a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+

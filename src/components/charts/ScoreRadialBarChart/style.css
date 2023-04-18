@@ -1,0 +1,6 @@
+.ScoreRadialBarChart {
+  border-radius: 5px;
+  width: calc(100% / 3 - 1.333vw);
+  min-width: 220px;
+  max-width: 290px;
+}

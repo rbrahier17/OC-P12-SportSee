@@ -1,0 +1,47 @@
+.VerticalNavContainer {
+  background-color: #020203;
+  width: 8.125vw;
+  max-width: 117px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 91px);
+  top: 91px;
+  align-items: center;
+  position: fixed;
+}
+
+
+.VerticalNavContainer nav {
+  margin-top: auto;
+}
+
+.VerticalNavContainer nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.VerticalNavContainer nav li img {
+  width: 4.44vw;
+  max-width: 64px;
+  height: 4.44vw;
+  max-height: 64px;
+}
+
+.VerticalNavContainer nav a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.VerticalNavContainer .copyright {
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 24px;
+  color: #ffffff;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  margin: auto 0 118px 0;
+}

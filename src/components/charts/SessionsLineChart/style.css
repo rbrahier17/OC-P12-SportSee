@@ -1,0 +1,37 @@
+.SessionsLineChart {
+   width: calc(100% / 3 - 1.333vw);
+   min-width: 220px;
+   max-width: 290px;
+}
+
+.SessionsLineChart .recharts-wrapper {
+  border-radius: 5px;
+}
+
+.SessionsLineChart .custom-tooltip {
+  background: #ffffff;
+  padding: 0px 10px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.SessionsLineChart h2 {
+  position: absolute;
+  height: 48px;
+  width: 147px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: #ffffff;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+  margin-left: 34px;
+  margin-top: 27px;
+  margin-bottom: 0;
+  z-index: 1;
+}
