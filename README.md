@@ -25,8 +25,8 @@ The dashboard is made up of various charts and visuals created mostly with the [
 6. Once you start the project with npm run start, your default browser will launch, and you can select a data source (MOCK or API) and navigate to one of the two available profiles to view the dashboard page.
 
 <div style="width:100%; display: flex; justify-content: center; align-items: center;">
-  <img src="./screenshots/DataSource.png" height="auto" alt="Choose data source" style="display:block; width:40%"/>
-  <img src="./screenshots/NavigateToProfile.png"  height="auto" alt="Navigate to profile" style="display:block;width:50%"/> 
+  <img src="./screenshots/DataSource.png" height="auto" alt="Choose data source" style="display:block; width:45%"/>
+  <img src="./screenshots/NavigateToProfile.png"  height="auto" alt="Navigate to profile" style="display:block;width:45%"/> 
 </div>
 
 ### API Usage
