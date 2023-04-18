@@ -26,7 +26,7 @@ The dashboard is made up of various charts and visuals created mostly with the [
 
 <div style="width:100%; display: flex; justify-content: center; align-items: center;">
   <img src="./screenshots/DataSource.png" height="auto" alt="Choose data source" style="display:block; width:45%"/>
-  <img src="./screenshots/NavigateToProfile.png"  height="auto" alt="Navigate to profile" style="display:block;width:45%"/> 
+  <img src="./screenshots/NavigateToProfile.png"  height="auto" alt="Navigate to profile" style="display:block;width:45%; transform:translateY(-20px)"/> 
 </div>
 
 ### API Usage
