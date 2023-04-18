@@ -12,8 +12,9 @@ This is a site for SportSee's new user profile page. The page allows users to tr
 
 1. Clone the repository.
 2. Open the project in your terminal and run the command `npm install`.
-3. Define the API variable in the `.env` file (`REACT_APP_API_URL=http://localhost:3000`).
-4. Start the project with the command `npm run start`.
+3. Create a `.env` file at the root of the project.
+4. Define the API variable in the `.env` file with the following syntax: `REACT_APP_API_URL=http://localhost:3000`.
+5. Start the project with the command `npm run start`.
 
 ### API Usage
 
@@ -27,9 +28,6 @@ The home page allows you to select a data source to test this new profile page. 
 
 To use the application, follow the steps in the Installation section.
 
-## Credits
-
-This project was created by [OpenClassrooms](https://openclassrooms.com/).
 
 ## License
 
