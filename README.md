@@ -1,46 +1,34 @@
-# Getting Started with Create React App
+# SportSee
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is project #12 of the OpenClassrooms 'Frontend Developer JS/React' path. 
+The SportSee user profile page is a sports analytics dashboard that allows users to track various types of data, such as workout sessions completed and calories burned. 
+The dashboard is made up of various charts and visuals created mostly with the [**Recharts**](https://recharts.org/en-US/) library. 
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+- Node.js (v18.13.0 was used for this project)
+- Git
+- Clone the repository for the API available at this URL: https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Clone the repository.
+2. Open the project in your terminal and run the command `npm install`.
+3. Create a `.env` file at the root of the project.
+4. Define the API variable in the `.env` file with the following syntax: `REACT_APP_API_URL=http://localhost:3000` (Change PORT if needed).
+5. Start the project with the command `npm run start`.
+6. Once you start the project with npm run start, your default browser will launch, and you can select a data source (MOCK or API) and navigate to one of the two available profiles to view the dashboard page.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### API Usage
 
-### `npm test`
+To use the API, it is necessary to have cloned the API repository mentioned in the Prerequisites and to have started it locally (refer to the [API README](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard/blob/master/README.md)). 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Data Source
 
-### `npm run build`
+![Choose the data source](./screenshots/DataSource.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The home page allows you to select a data source to test this new profile page. You can select MOCK or API. If you select Mock, the data will come from a JSON file in the project. If you select API, calls will be made to retrieve the data from the API whose URL is defined in the `.env` file. The library for API calls is **Axios**.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Available Profiles
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Only the data of two profiles with identifiers 12 and 18 are available. To access the dashboard page for a specific profile, you can navigate to the URL path /profile/<profile_id>.

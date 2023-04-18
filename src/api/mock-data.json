@@ -3,7 +3,7 @@
     {
       "userId": 12,
       "userInfos": {
-        "firstName": "MOCK Karl",
+        "firstName": "Karl (Mocked data)",
         "lastName": "Dovineau",
         "age": 31
       },
@@ -18,7 +18,7 @@
     {
       "userId": 18,
       "userInfos": {
-        "firstName": "MOCK Cecilia",
+        "firstName": "Cecilia (Mocked data)",
         "lastName": "Ratorez",
         "age": 34
       },
