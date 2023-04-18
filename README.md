@@ -4,6 +4,9 @@ This is project #12 of the OpenClassrooms 'Frontend Developer JS/React' path.
 The SportSee user profile page is a sports analytics dashboard that allows users to track various types of data, such as workout sessions completed and calories burned. 
 The dashboard is made up of various charts and visuals created mostly with the [**Recharts**](https://recharts.org/en-US/) library. 
 
+![Dashboard screenshot](./screenshots/Dashboard.png)
+
+
 ## Prerequisites
 
 - Node.js (v18.13.0 was used for this project)
