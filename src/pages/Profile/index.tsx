@@ -1,11 +1,11 @@
 import "./style.css";
 
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { MainData } from "../../models/MainData";
-import Activity from "../../models/Activity";
-import AverageSession from "../../models/AverageSession";
-import Performance from "../../models/Performance";
+import { Activity } from "../../models/Activity";
+import { AverageSession } from "../../models/AverageSession";
+import { Performance } from "../../models/Performance";
 import { Link, useNavigate } from "react-router-dom";
 
 import { getUserMainData, getUserActivity, getUserAverageSessions, getUserPerformance } from "../../api";
@@ -24,7 +24,7 @@ type UserData = {
   userPerformance?: Array<Performance>;
 };
 
-function App() {
+export default function ProfilePage() {
   const userId = Number(useParams().id);
   const [data, setData] = useState<UserData>();
   const [loading, setLoading] = useState(true);
@@ -34,10 +34,10 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const userMainData = await getUserMainData(useApi, userId);
-        const userActivities = await getUserActivity(useApi, userId);
-        const userAverageSessions = await getUserAverageSessions(useApi, userId);
-        const userPerformance = await getUserPerformance(useApi, userId);
+        const userMainData:MainData = await getUserMainData(useApi, userId);
+        const userActivities:Activity[] = await getUserActivity(useApi, userId);
+        const userAverageSessions:AverageSession[] = await getUserAverageSessions(useApi, userId);
+        const userPerformance:Performance[] = await getUserPerformance(useApi, userId);
         setData({ userMainData, userActivities, userAverageSessions, userPerformance });
         setLoading(false);
       } catch (error: any) {
@@ -48,18 +48,17 @@ function App() {
     })();
   }, []);
 
+  function ErrorMessage({ message }: { message: string }) {
+    return (
+      <div className='ErrorMessage'>
+        <p>{message}</p>
+        <Link to='/'>Retour à l'accueil</Link>
+      </div>
+    );
+  }
 
-function ErrorMessage({ message }: { message: string }) {
-  return (
-    <div className='ErrorMessage'>
-      <p>{message}</p>
-      <Link to='/'>Retour à l'accueil</Link>
-    </div>
-  );
-}
-
-// Dans le composant Profil
-if (loading) return <p>Loading ....</p>;
+  // Dans le composant Profil
+  if (loading) return <p>Loading ....</p>;
 
   if (!data) {
     return <ErrorMessage message='No data' />;
@@ -110,4 +109,4 @@ if (loading) return <p>Loading ....</p>;
     </div>
   );
 }
-export default App;
+

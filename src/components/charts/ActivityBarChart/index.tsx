@@ -1,16 +1,49 @@
-import { BarChart, Rectangle, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import "./style.css";
-import { useParams } from "react-router-dom";
+/**
+ * ACTIVITY BAR CHART
+ */
 
+import { Activity } from "../../../models/Activity";
+
+import {
+  BarChart,
+  Rectangle,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  TooltipProps,
+} from "recharts";
+import "./style.css";
+
+
+/**
+ * Returns the number of ticks on the Y axis of the chart
+ * @param {Array<Activity>} data - The activity data to be displayed on the chart
+ * @returns {number} The number of ticks to be displayed on the Y axis
+ */
 function getTickCount(data: any): number {
   const maxTickValue = Math.max(...data.map((session: any) => session.kilogram)) + 1;
   const minTickValue = Math.min(...data.map((session: any) => session.kilogram)) - 1;
   return maxTickValue - minTickValue + 1;
 }
 
-const CustomTooltip:any = ({ active, payload, label }:any) => {
+
+/**
+ * Custom tooltip to be displayed when hovering over a chart item, which shows the values for both kCal and Kg.
+ * @param {Object} props - Props passed to the component
+ * @param {boolean} props.active - Whether or not the tooltip is active
+ * @param {Array<Object>} props.payload - The data payload of the tooltip
+ * @returns {JSX.Element} The tooltip component
+ */
+const CustomTooltip = ({ active, payload }: TooltipProps<any, any>): React.ReactElement | null => {
+  // Check if the tooltip is active and if there is payload data available
   if (active && payload && payload.length) {
+    // Extract the data from the payload
     const data = payload[0].payload;
+    // Render the custom tooltip with the data
     return (
       <div className='custom-tooltip'>
         <p>{data.kilogram}kg</p>
@@ -18,14 +51,34 @@ const CustomTooltip:any = ({ active, payload, label }:any) => {
       </div>
     );
   }
-}
-
-
-const CustomCursor = (data: any) => {
-  return <Rectangle fill='rgba(0, 0, 0, 0.1)' x={data.x - 27} y={data.y} width={50} height={data.height} />;
+  // If there is no active tooltip or no payload data available, return null
+  return null;
 };
 
-export default function ActivityBarChart({ userActivities }: { userActivities: Array<object> }) {
+
+interface CustomCursorProps {
+  x?: number;
+  y?: number;
+  height?: number;
+}
+
+/**
+ * Custom cursor component render a rectangle with a slightly darkened background for the content being hovered on the chart
+ * @param {CustomCursorProps} props - Props passed to the component
+ * @returns {React.ReactElement} The CustomCursor component
+ */
+const CustomCursor = ({ x = 0, y = 0, height = 0 }: CustomCursorProps): React.ReactElement => {
+  return <Rectangle fill='rgba(0, 0, 0, 0.1)' x={x - 27} y={y} width={50} height={height} />;
+};
+
+
+/**
+ * Renders a bar chart of user's daily activity and tracks their weight and calories burned after each session.
+ * @param {Object} props - The props object.
+ * @param {Array<Activity>} props.userActivities - An array of user activity objects.
+ * @returns {React.ReactElement} The ActivityBarChart component.
+ */
+export default function ActivityBarChart({ userActivities }: { userActivities: Array<Activity> }): React.ReactElement {
   return (
     <ResponsiveContainer className='ActivityBarChart' aspect={2.62}>
       <BarChart
@@ -56,7 +109,7 @@ export default function ActivityBarChart({ userActivities }: { userActivities: A
           formatter={(value) => (value === "kilogram" ? "Poids (kg)" : "Calories brûlées (kCal)")}
         />
         <XAxis
-          dataKey={({day}) => new Date(day).getUTCDate()}
+          dataKey={({ day }) => new Date(day).getUTCDate()}
           scale='point'
           padding={{ left: 12, right: 10 }}
           tickLine={false}

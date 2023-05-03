@@ -1,13 +1,19 @@
-import { LineChart, Line, XAxis, YAxis, Rectangle, Tooltip, ResponsiveContainer } from "recharts";
+/**
+ * SESSIONS LINE CHART
+ */
+
+import { AverageSession } from "../../../models/AverageSession";
+import { LineChart, Line, XAxis, YAxis, Rectangle, Tooltip, ResponsiveContainer, TooltipProps } from "recharts";
 import "./style.css";
 
 /**
- * Create a custom tooltip
- * @param {bool} active - a boolean denoting if a tooltip should be displayed when a user mouses over the chart on desktop
- * @param {array} payload - the data the tooltip will be displaying from the chart
- * @returns CustomTooltip returns a custom tooltip
+ * Creates a custom tooltip to be displayed when hovering over a chart item that shows the session duration.
+ * @param {Object} props - Props passed to the component
+ * @param {boolean} props.active - Whether or not the tooltip is active
+ * @param {Array<Object>} props.payload - The data payload of the tooltip
+ * @returns {JSX.Element} The tooltip component
  */
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({ active, payload }: TooltipProps<any, any>): React.ReactElement | null => {
   if (active && payload && payload.length) {
     return (
       <div className='custom-tooltip'>
@@ -18,18 +24,29 @@ const CustomTooltip = ({ active, payload }: any) => {
   return null;
 };
 
+interface CustomCursorProps {
+  points?: { x?: number; y?: number }[];
+  width?: number;
+}
+
 /**
- * Create a custom cursor
- * @param {array} points - the current position of the cursor coordinate x and y
- * @param {number} width - the width of the graph
- * @returns CustomCursor returns a cursor in the shape of a rectangle in the background
+ * Creates a custom cursor component that renders a rectangle with a slightly darkened background for the content being hovered on the chart.
+ * @param {CustomCursorProps} props - The props passed to the component.
+ * @returns {React.ReactElement} The CustomCursor component.
  */
-const CustomCursor = ({ points, width }: any) => {
+const CustomCursor = ({ points = [{ x: 0, y: 0 }], width = 0 }: CustomCursorProps): React.ReactElement => {
   const { x } = points[0];
   return <Rectangle fill='rgba(0, 0, 0, 0.1)' x={x} width={width} height={400} />;
 };
 
-export default function SessionsLineChart({ userAverageSessions }: { userAverageSessions: Array<object> }) {
+
+/**
+ * Renders a line chart that displays the user's average session duration for each day of the week.
+ * @param {Object} props - The component props.
+ * @param {Array<AverageSession>} props.userAverageSessions - An array of objects containing the average session duration for each day of the week.
+ * @returns {JSX.Element} The SessionsLineChart component.
+ */
+export default function SessionsLineChart({ userAverageSessions }: { userAverageSessions: Array<AverageSession> }): JSX.Element {
   return (
     <div className='SessionsLineChart'>
       <h2> Durée moyenne des sessions</h2>
@@ -55,7 +72,7 @@ export default function SessionsLineChart({ userAverageSessions }: { userAverage
             interval={"preserveStartEnd"}
           />
           <YAxis type='number' hide={true} />
-          <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} wrapperStyle={{ outline: "none" }} />
+          <Tooltip content={CustomTooltip} cursor={<CustomCursor />} wrapperStyle={{ outline: "none" }} />
 
           <Line
             type='natural'

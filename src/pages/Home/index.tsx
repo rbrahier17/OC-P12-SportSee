@@ -6,7 +6,7 @@ import iconWoman from "../../assets/icon-woman.svg";
 import { useState, useEffect } from "react";
 import DataSource from "../../components/DataSource";
 
-export function HomePage() {
+export default function HomePage() {
   const [useApi, setUseApi] = useState<boolean | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(true);
 

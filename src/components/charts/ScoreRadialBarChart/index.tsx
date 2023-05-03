@@ -1,22 +1,22 @@
-import { cp } from "fs";
-import { ResponsiveContainer, PolarAngleAxis, RadialBarChart, RadialBar, Legend } from "recharts";
-import './style.css'
+/**
+ * SCORE RADIAL BAR CHART
+ */
 
-const data = [
-  {
-    name: "Score",
-    value: 26, // entre 0 et 1
-  },
-];
+import { ResponsiveContainer, PolarAngleAxis, RadialBarChart, RadialBar } from "recharts";
+import "./style.css";
 
-export default function ScoreRadialBarChart({userScore}:{userScore: number}) {
-
+/**
+ * Displays the user score (percentage) in a radial bar chart.
+ * @param {object} props - The component props.
+ * @param {number} props.userScore - The user's score to display.
+ * @returns {JSX.Element} - The JSX element to render.
+ */
+export default function ScoreRadialBarChart({ userScore }: { userScore: number }): JSX.Element {
   const formattedData = [
     {
-      value: userScore * 100
-    }
+      value: userScore * 100,
+    },
   ];
-
 
   return (
     <div className='ScoreRadialBarChart'>

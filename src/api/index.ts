@@ -1,79 +1,93 @@
-import axios from "axios";
-import Activity from "../models/Activity";
-import AverageSession from "../models/AverageSession";
+// Import API response interfaces
+import { IMainDataApiRes, IAverageSessionApiRes, IActivityApiRes, IPerformanceApiRes } from "./interfaces";
+
+// Import models and their interfaces
+import { Activity, IActivity } from "../models/Activity";
+import { AverageSession, IAverageSession } from "../models/AverageSession";
 import { MainData } from "../models/MainData";
-import Performance from "../models/Performance";
+import { Performance } from "../models/Performance";
+
+// Import Utils functions to get data
+import getApiData from "./utils/getApiData";
+import getMockData from "./utils/getMockData";
+
+// Import mocked data
 import mockedData from "./mock-data.json";
-import { type } from "os";
 
-const apiUrl = process.env.REACT_APP_API_URL;
+// Define API endpoints
+const API_ENDPOINTS = {
+  userMainData: (userId: number) => `/user/${userId}`,
+  userActivity: (userId: number) => `/user/${userId}/activity`,
+  userAverageSessions: (userId: number) => `/user/${userId}/average-sessions`,
+  userPerformance: (userId: number) => `/user/${userId}/performance`,
+};
 
-async function getApiData(endpoint: string): Promise<any> {
-  try {
-    const response = await axios.get(apiUrl + endpoint);
-    if (!response.data.data) {
-      throw new Error("Données non reçues de l'API");
-    }
-    return response.data.data;
-  } catch (error: any) {
-    if (error.code === "ERR_NETWORK") {
-      throw new Error("Impossible de se connecter à l'API.");
-    }
-    if (error.response) {
-      if (error.response.status === 404) {
-        throw new Error("Les données du profil demandé sont introuvables par l'API.");
-      } else {
-        throw new Error(
-          `Erreur HTTP ${error.response.status} lors de la récupération des données depuis l'API : ${error.response.data.message}`
-        );
-      }
-    } else {
-      console.error(error);
-      throw new Error(`Une erreur est survenue lors de la récupération des données depuis l'API : ${error.message}`);
-    }
-  }
+/**
+ * Retrieves data from the API or mocked data using a given endpoint and data type.
+ *
+ * @param { boolean } useApi - A boolean indicating whether to use the API or the mocked data.
+ * @param { string } endpoint - The API endpoint to call.
+ * @param { number } userId - The ID of the user.
+ * @param { any } mockData - The mocked data to use.
+ * @returns {Promise<any>} A promise that resolves to the data.
+ */
+async function getData(useApi: boolean, endpoint: string, userId: number, mockData: any): Promise<any> {
+  const data = useApi ? await getApiData(endpoint) : getMockData(mockData, userId);
+  return data;
 }
 
-function getMockData(mockedDataArray: any[], userId: number): any {
-  if (Number.isNaN(userId)) {
-    throw new Error(`L'identifiant utilisateur saisi ne respecte pas le format correct`);
-  }
-  const mockData = mockedDataArray.find((el) => el.userId === userId);
-  if (!mockData) {
-    throw new Error(`Les données du profil "${userId}" sont introuvables par le MOCK API`);
-  }
-  return mockData;
+/**
+ * Retrieves the USER_MAIN_DATA for a user, either from the API or the mocked data.
+ *
+ * @param { boolean } useApi - A boolean indicating whether to use the API or the mocked data.
+ * @param { number } userId - The ID of the user.
+ * @returns {Promise<MainData>} A promise that resolves to a user MainData instance.
+ */
+export async function getUserMainData(useApi: boolean, userId: number): Promise<MainData> {
+  const endpoint = API_ENDPOINTS.userMainData(userId);
+  const data: IMainDataApiRes = await getData(useApi, endpoint, userId, mockedData.USER_MAIN_DATA);
+  const score = data.score ?? data.todayScore;
+  return new MainData(data.userInfos, score ?? 0, data.keyData);
 }
 
-export async function getUserMainData(useApi: boolean, userId: number) {
-  const data = useApi ? await getApiData(`/user/${userId}`) : getMockData(mockedData.USER_MAIN_DATA, userId);
-  return new MainData(data.userInfos, data.todayScore ?? data.score, data.keyData);
+/**
+ * Retrieves the USER_ACTIVITY data, either from the API or the mocked data.
+ *
+ * @param { boolean } useApi - A boolean indicating whether to use the API or the mocked data.
+ * @param { number } userId - The ID of the user.
+ * @returns {Promise<Activity[]>}  A promise that resolves to an array of Activity instances.
+ */
+export async function getUserActivity(useApi: boolean, userId: number): Promise<Activity[]> {
+  const endpoint = API_ENDPOINTS.userActivity(userId);
+  const data: IActivityApiRes = await getData(useApi, endpoint, userId, mockedData.USER_ACTIVITY);
+  return data.sessions.map((s: IActivity) => new Activity(s)) ?? [];
 }
 
-export async function getUserActivity(useApi: boolean, userId: number) {
-  const data = useApi ? await getApiData(`/user/${userId}/activity`) : getMockData(mockedData.USER_ACTIVITY, userId);
-
-  return data?.sessions.map((s: any) => new Activity(s.day, s.kilogram, s.calories)) ?? [];
+/**
+ * Retrieves the USER_AVERAGE_SESSIONS data, either from the API or the mocked data.
+ *
+ * @param { boolean } useApi - A boolean indicating whether to use the API or the mocked data.
+ * @param { number } userId - The ID of the user.
+ * @returns {Promise<AverageSession[]>}  A promise that resolves to an array of AverageSession instances.
+ */
+export async function getUserAverageSessions(useApi: boolean, userId: number): Promise<AverageSession[]> {
+  const endpoint = API_ENDPOINTS.userAverageSessions(userId);
+  const data: IAverageSessionApiRes = await getData(useApi, endpoint, userId, mockedData.USER_AVERAGE_SESSIONS);
+  return data.sessions.map((s: IAverageSession) => new AverageSession(s)) ?? [];
 }
 
-export async function getUserAverageSessions(useApi: boolean, userId: number) {
-  const data = useApi
-    ? await getApiData(`/user/${userId}/average-sessions`)
-    : getMockData(mockedData.USER_AVERAGE_SESSIONS, userId);
+/**
+ * Retrieves the USER_PERFORMANCE data, either from the API or the mocked data.
+ *
+ * @param { boolean } useApi - A boolean indicating whether to use the API or the mocked data.
+ * @param { number } userId - The ID of the user.
+ * @returns {Promise<Performance[]>}  A promise that resolves to an array of Performance instances.
+ */
+export async function getUserPerformance(useApi: boolean, userId: number): Promise<Performance[]> {
+  const endpoint = API_ENDPOINTS.userPerformance(userId);
+  const data: IPerformanceApiRes = await getData(useApi, endpoint, userId, mockedData.USER_PERFORMANCE);
 
-  return data?.sessions.map((s: any) => new AverageSession(s.day, s.sessionLength)) ?? [];
-}
-
-interface performanceKind {
-  [key: number]: string;
-}
-
-export async function getUserPerformance(useApi: boolean, userId: number) {
-  const data = useApi
-    ? await getApiData(`/user/${userId}/performance`)
-    : getMockData(mockedData.USER_PERFORMANCE, userId);
-
-  const performanceKinds: performanceKind = data?.kind;
-
-  return data.data.map((perf: any) => new Performance(perf.value, performanceKinds[perf.kind]));
+  return data.data.map((perf) => {
+    return new Performance(perf.value, data.kind[perf.kind]);
+  });
 }

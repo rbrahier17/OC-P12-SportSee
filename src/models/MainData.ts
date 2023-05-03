@@ -1,28 +1,36 @@
-export class UserInfos  {
-  firstName: string = '';
-  lastName?: string;
+export interface IUserInfos {
+  firstName: string;
+  lastName: string;
   age?: number;
-};
+}
 
-export class KeyData {
-  calorieCount?: number;
-  proteinCount?: number;
-  carbohydrateCount?: number;
-  lipidCount?: number;
-};
+export interface IKeyData {
+  calorieCount: number;
+  proteinCount: number;
+  carbohydrateCount: number;
+  lipidCount: number;
+}
 
 export class MainData {
-  userInfos: UserInfos;
-  score: number;
-  keyData: KeyData;
+  _userInfos: IUserInfos;
+  _score: number;
+  _keyData: IKeyData;
 
-  constructor(userInfos: UserInfos, score: number, keyData: KeyData) {
-    this.userInfos = userInfos;
-    this.score = score;
-    this.keyData = keyData;
+  constructor(userInfos: IUserInfos, score: number, keyData: IKeyData) {
+    this._userInfos = userInfos;
+    this._score = score;
+    this._keyData = keyData;
   }
 
-  get firstName() {
-    return this.userInfos.firstName
+  get firstName(): string {
+    return this._userInfos.firstName;
+  }
+
+  get score(): number {
+    return this._score;
+  }
+
+  get keyData(): IKeyData {
+    return this._keyData;
   }
 }

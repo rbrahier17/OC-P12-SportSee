@@ -1,15 +1,10 @@
-
-
-
-
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 
 import Root from "./Root";
 import ProfilePage from "./pages/Profile";
 import ErrorPage from "./pages/Error";
-import { HomePage } from "./pages/Home";
+import HomePage from "./pages/Home";
 
 const routes = [
   {
@@ -39,8 +34,6 @@ const routes = [
     errorElement: <ErrorPage />,
   },
 ];
-
-
 
 const router = createBrowserRouter(routes);
 
