@@ -13,8 +13,6 @@ export default function getMockData<T extends { userId?: number; id?: number }>(
   if (Number.isNaN(userId)) {
     throw new Error(`L'identifiant utilisateur saisi ne respecte pas le format correct`);
   }
-  console.log(userId);
-  console.log(mockedDataArray);
   const mockData = mockedDataArray.find((el) => el.userId ?? el.id === userId);
   if (!mockData) {
     throw new Error(`Les données du profil "${userId}" sont introuvables par le MOCK API`);

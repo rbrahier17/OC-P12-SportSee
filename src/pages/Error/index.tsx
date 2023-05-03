@@ -2,7 +2,12 @@ import "./style.css";
 import Header from "../../components/Header";
 import { Link, useLocation } from "react-router-dom";
 
-export default function ErrorPage() {
+/**
+ * ErrorPage component displays an error message and the option to go back to the home page.
+ * 
+ * @returns {JSX.Element} ErrorPage component.
+ */
+export default function ErrorPage(): JSX.Element {
   const location = useLocation();
   const error = location.state?.error;
   const status = error?.status;

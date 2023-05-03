@@ -3,11 +3,15 @@
  */
 
 import "./style.css";
-import LogoSVG  from "../../assets/logo.svg";
+import LogoSVG from "../../assets/logo.svg";
 
-export default function Header() {
-
-  const navItems = [
+/**
+ * Renders the app header component with navigation links.
+ *
+ * @returns {JSX.Element} The header component.
+ */
+export default function Header(): JSX.Element {
+  const navItems: { title: string; path: string }[] = [
     {
       title: "Accueil",
       path: "/",
@@ -29,7 +33,7 @@ export default function Header() {
   return (
     <header className='Header'>
       <a href='/'>
-          <img src={LogoSVG} alt="Logo SportSee" />
+        <img src={LogoSVG} alt='Logo SportSee' />
       </a>
       <nav>
         <ul>

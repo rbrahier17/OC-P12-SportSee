@@ -42,6 +42,8 @@ const CustomCursor = ({ points = [{ x: 0, y: 0 }], width = 0 }: CustomCursorProp
 
 /**
  * Renders a line chart that displays the user's average session duration for each day of the week.
+ * @see https://recharts.org/en-US/api/LineChart
+ * 
  * @param {Object} props - The component props.
  * @param {Array<AverageSession>} props.userAverageSessions - An array of objects containing the average session duration for each day of the week.
  * @returns {JSX.Element} The SessionsLineChart component.

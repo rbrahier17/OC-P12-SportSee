@@ -7,6 +7,8 @@ import "./style.css";
 
 /**
  * Displays the user score (percentage) in a radial bar chart.
+ * @see https://recharts.org/en-US/api/RadialBarChart
+ * 
  * @param {object} props - The component props.
  * @param {number} props.userScore - The user's score to display.
  * @returns {JSX.Element} - The JSX element to render.

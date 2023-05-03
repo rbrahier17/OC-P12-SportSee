@@ -16,7 +16,13 @@ class FormattedData {
   }
 }
 
-function getFormattedData(keyDataCardType: string) {
+/**
+ * Get the formatted data for a KeyDataCard based on the key data card type
+ *
+ * @param {string} keyDataCardType - The type of the key data card
+ * @returns {FormattedData} The formatted data for the key data card
+ */
+function getFormattedData(keyDataCardType: string):FormattedData | null {
   switch (keyDataCardType) {
     case "calorieCount":
       return new FormattedData(iconCalories, "kCal", "Calories");
@@ -26,10 +32,21 @@ function getFormattedData(keyDataCardType: string) {
       return new FormattedData(iconCarbs, "g", "Glucides");
     case "lipidCount":
       return new FormattedData(iconFat, "g", "Lipides");
+    default: 
+      return null
   }
 }
 
-export default function KeyDataCard({ keyDataCardType, keyDataCardValue }: { keyDataCardType: string; keyDataCardValue: any }) {
+
+/**
+ * Displays a KeyDataCard component that presents data related to calories, proteins, carbohydrates, or lipids.
+ *
+ * @param {Object} props - The props object for the component
+ * @param {string} props.keyDataCardType - The type of the key data card
+ * @param {number} props.keyDataCardValue - The value of the key data card
+ * @returns {JSX.Element} The rendered KeyDataCard component
+ */
+export default function KeyDataCard({ keyDataCardType, keyDataCardValue }: { keyDataCardType: string; keyDataCardValue: number }) {
   const formattedData = getFormattedData(keyDataCardType);
 
   if (!formattedData) throw new Error();

@@ -5,8 +5,12 @@ import iconWeight from "../../assets/icon-weight.svg";
 
 import "./style.css";
 
-export default function VerticalNav() {
-  const navItems = [
+/**
+ * Displays a vertical navigation bar with icon links.
+ * @returns {JSX.Element} The VerticalNav component.
+ */
+export default function VerticalNav(): JSX.Element {
+  const navItems: { iconSrc: string; path: string }[] = [
     {
       iconSrc: iconYoga,
       path: "/",

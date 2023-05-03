@@ -33,6 +33,8 @@ function getTickCount(data: any): number {
 
 /**
  * Custom tooltip to be displayed when hovering over a chart item, which shows the values for both kCal and Kg.
+ * @see https://recharts.org/en-US/api/Tooltip
+ * 
  * @param {Object} props - Props passed to the component
  * @param {boolean} props.active - Whether or not the tooltip is active
  * @param {Array<Object>} props.payload - The data payload of the tooltip
@@ -74,6 +76,8 @@ const CustomCursor = ({ x = 0, y = 0, height = 0 }: CustomCursorProps): React.Re
 
 /**
  * Renders a bar chart of user's daily activity and tracks their weight and calories burned after each session.
+ * @see https://recharts.org/en-US/api/BarChart
+ * 
  * @param {Object} props - The props object.
  * @param {Array<Activity>} props.userActivities - An array of user activity objects.
  * @returns {React.ReactElement} The ActivityBarChart component.

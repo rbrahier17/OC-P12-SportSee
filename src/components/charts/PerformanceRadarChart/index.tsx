@@ -51,7 +51,8 @@ interface RenderPolarAngleAxisProps {
 /**
  * Renders a polar angle axis component to display the title of the data.
  * Polar angle axis represents the angular coordinates of the data points on the chart.
- *
+ * @see https://recharts.org/en-US/api/PolarAngleAxis
+ * 
  * @param {RenderPolarAngleAxisProps} props - The props object for the component.
  * @param {Payload} props.payload - An object containing text value that will be rendered.
  * @param {number} props.x - X-coordinate of the component.
@@ -92,10 +93,16 @@ function renderPolarAngleAxis({
 
 /**
  * Displays a radar chart of user performance.
+ * @see https://recharts.org/en-US/api/RadarChart
+ * 
  * @param {Array<object>} userPerformance - The user performance data to be displayed.
  * @returns {JSX.Element} The radar chart component.
  */
-export default function PerformanceRadarChart({ userPerformance }: { userPerformance: Array<Performance> }): JSX.Element {
+export default function PerformanceRadarChart({
+  userPerformance,
+}: {
+  userPerformance: Array<Performance>;
+}): JSX.Element {
   return (
     <div className='PerformanceRadarChart'>
       <ResponsiveContainer aspect={1}>
